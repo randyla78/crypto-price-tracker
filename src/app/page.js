@@ -41,8 +41,9 @@ const CryptoPriceTracker = () => {
   }, [cryptos]);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-6">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen bg-[gray-100] flex flex-col items-center justify-center p-6">
+      <div className="p-6 rounded-lg w-full max-w-md border ">
+      <h1 className="text-2xl font-semibold text-gray-700 text-center mb-4">Crypto Price Tracker</h1>
         <input
           type="text"
           value={searchQuery}
@@ -50,17 +51,19 @@ const CryptoPriceTracker = () => {
           placeholder="Search for cryptocurrencies"
           className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button onClick={handleSearchSubmit} className="w-full py-2 rounded-md border">Search</button>
+          <button onClick={handleSearchSubmit} className="w-full py-2 rounded-md border mt-3 mb-4  hover:bg-gray-100 transition">Search</button>
         
         <div>
-          <h2 className="text-2xl mb-4">Cryptocurrency Prices</h2>
+          <h2 className="text-lg mb-4 font-semibold text-gray-700">Cryptocurrency Prices</h2>
           {Object.keys(prices).length > 0 ? (
-            Object.entries(prices).map(([crypto, data]) => (
-              <div key={crypto}>
-                <h3>{crypto}</h3>
-                <p>Price: ${data.cad}</p>
-              </div>
-            ))
+            <div className="space-y-2">
+              {Object.entries(prices).map(([crypto, data]) => (
+                <div key={crypto} className="mb-2 p-4 bg-gray-50 rounded-md shadow-sm">
+                  <h3 className="text-lg">{crypto.toUpperCase()}</h3>
+                  <p className="text-green-500">Price: ${data.cad}</p>
+                </div>
+              ))}
+            </div>
           ) : (
             <p>No results found</p>
           )}
