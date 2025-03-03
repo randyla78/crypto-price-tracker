@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useEffect } from 'react';
 
 const CryptoPriceTracker = () => {
@@ -96,7 +95,7 @@ const CryptoPriceTracker = () => {
 
 
   return (
-    <div className="min-h-screen bg-[gray-100] flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-[#F2F0EF] flex flex-col items-center justify-center p-6">
       <div className="p-6 rounded-lg w-full max-w-md border ">
       <h1 className="text-2xl font-semibold text-gray-700 text-center mb-4">Crypto Price Tracker</h1>
         <input
@@ -104,9 +103,9 @@ const CryptoPriceTracker = () => {
           value={searchQuery}
           onChange={handleSearchChange}
           placeholder="Search for cryptocurrencies"
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-          <button onClick={handleSearchSubmit} className="w-full py-2 rounded-md border mt-3 mb-4  hover:bg-gray-100 transition">Search</button>
+          <button onClick={handleSearchSubmit} className="w-full py-2 rounded-md border mt-3 mb-4  hover:bg-gray-100 transition cursor-pointer">Search</button>
           {error && (
             <div className="bg-red-100 text-red-700 mt-4 p-4 rounded-md">
               {error}
@@ -139,7 +138,7 @@ const CryptoPriceTracker = () => {
 
         <button
           onClick={handleRefreshPrices}
-          className="w-full py-2 rounded-md mt-4 text-white font-semibold text-lg bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105"
+          className="w-full py-2 rounded-md mt-4 text-white font-semibold text-lg bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105 cursor-pointer"
         >
           Refresh Prices
         </button>
