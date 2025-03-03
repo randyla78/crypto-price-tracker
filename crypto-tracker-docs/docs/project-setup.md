@@ -1,3 +1,9 @@
+---
+sidebar_position: 1
+---
+
+# Project Setup
+
 Simple app that provides real-time cryptocurrency price tracking using the CoinGecko API. Includes a search to search for any crypto by name or symbol.
 
 ## Project Setup Guide for Web
