@@ -69,6 +69,32 @@ const CryptoPriceTracker = () => {
     }
   }, [cryptos]);
 
+
+  //Refresh prices by setting prices to empty then fetching them again
+  const handleRefreshPrices = () => {
+    setPrices({});
+    setLoading(true);
+    setError('');
+    const fetchPrices = async () => {
+      try {
+        const ids = cryptos.join(',');
+        const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=cad`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch prices');
+        }
+        const data = await response.json();
+        setPrices(data);
+      } catch (error) {
+        console.error('Error fetching prices:', error);
+        setError('Failed to fetch prices. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPrices();
+  };
+
+
   return (
     <div className="min-h-screen bg-[gray-100] flex flex-col items-center justify-center p-6">
       <div className="p-6 rounded-lg w-full max-w-md border ">
@@ -110,6 +136,13 @@ const CryptoPriceTracker = () => {
             <p>No results found</p>
           )}
         </div>
+
+        <button
+          onClick={handleRefreshPrices}
+          className="w-full py-2 rounded-md mt-4 text-white font-semibold text-lg bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105"
+        >
+          Refresh Prices
+        </button>
       </div>
     </div>
   );
