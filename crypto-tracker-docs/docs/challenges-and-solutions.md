@@ -30,6 +30,22 @@ While testing the search feature, I tried inputting gibberish and realized that 
 
 To fix this, I added a check to see if the results was greater than 0. If no results are found, I showed this message to the user: "No cryptocurrencies found. Please try again with a different search term.". This gives the app a better user experience and prevents any confusion when no currencies show up or nothing happens after the submit button is pressed.
 
+## Challenge 4: Handling Dark Theme on Mobile
+
+While testing the app, I opened the application on my phone to check responsiveness and if it was mobile-friendly, and although the layout looked good, a lot of elements were invisible or discolored. It was an unexpected issue and I started to debug the issue. 
+
+### Solution
+
+This reminded me of an issue my team and I also encountered at GastroTrackAI when I was a mobile app developer intern. After testing out some things, I turned off dark mode in my phone settings and the app looked normal again, which was the same issue my team had run into in the past. At that time, I did some research on stackoverflow and found a way to forcefully turn off Android's night theme when users use our app, so I wanted to try the same here. 
+
+After some research, I found out I could forcefully turn off dark theme in the tailwindcss config file, but this project did not have one and I ran into some errors attempting to create one. I figured the easier and better solution was to adapt the app to be compatible with dark mode, which I did so by manually setting css styling for dark mode users using tailwind css for all the elements that had issues on mobile. For example:
+
+```bash
+<button 
+    className="w-full py-2 rounded-md ... dark:bg-gray-800 dark:text-white">
+Search
+</button>
+```
 
 ## Conclusion
 
