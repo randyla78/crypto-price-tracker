@@ -1,3 +1,5 @@
+Deployed at [https://crypto-price-tracker-beige.vercel.app/](https://crypto-price-tracker-beige.vercel.app/)
+
 Simple app that provides real-time cryptocurrency price tracking using the CoinGecko API. Includes a search to search for any crypto by name or symbol.
 
 ## Project Setup Guide for Web
