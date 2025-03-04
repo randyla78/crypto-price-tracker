@@ -120,7 +120,7 @@ const CryptoPriceTracker = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search for cryptocurrencies"
-          className="w-full p-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white dark:placeholder-gray-300"
+          className="w-full p-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-gray-800 dark:placeholder-gray-400"
         />
           <select
             value={currency}
