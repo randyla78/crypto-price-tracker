@@ -154,7 +154,7 @@ const CryptoPriceTracker = () => {
             
               Object.entries(prices).map(([crypto, data]) => (
                 <div key={crypto} className="mb-2 p-4 bg-gray-50 rounded-md shadow-sm">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-900">{crypto.toUpperCase()}</h3>
+                  <h3 className="text-lg text-gray-900 dark:text-gray-800">{crypto.toUpperCase()}</h3>
                   <p className="text-green-500">Price: ${data[currency]}</p>
                 </div>
               ))
