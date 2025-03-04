@@ -125,7 +125,7 @@ const CryptoPriceTracker = () => {
           <select
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
-            className="ml-2 p-2 border border-gray-700 rounded-md"
+            className="ml-2 p-2 border border-gray-700 rounded-md bg-white text-gray-900 dark:bg-gray-800 dark:text-white"
           >
             <option value="cad">CAD</option>
             <option value="usd">USD</option>
@@ -154,7 +154,7 @@ const CryptoPriceTracker = () => {
             
               Object.entries(prices).map(([crypto, data]) => (
                 <div key={crypto} className="mb-2 p-4 bg-gray-50 rounded-md shadow-sm">
-                  <h3 className="text-lg dark:text-white">{crypto.toUpperCase()}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{crypto.toUpperCase()}</h3>
                   <p className="text-green-500">Price: ${data[currency]}</p>
                 </div>
               ))
