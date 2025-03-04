@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 
-const fetchPrices = async (cryptos) => {
+const fetchPrices = async (cryptos, currency) => {
   const ids = cryptos.join(',');
   const response = await fetch(
-    `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=cad`
+    `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=${currency}`
   );
   if (!response.ok) {
     throw new Error('Failed to fetch prices');
@@ -19,11 +19,12 @@ const CryptoPriceTracker = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [cryptos, setCryptos] = useState(['bitcoin', 'ethereum', 'dogecoin', 'tether', 'ripple']);
   const [noResults, setNoResults] = useState(false);
+  const [currency, setCurrency] = useState('cad');
 
   //Use React Query to fetch prices
   const { data: prices, error, isLoading, refetch } = useQuery({
-    queryKey: ['cryptoPrices', cryptos], 
-    queryFn: () => fetchPrices(cryptos),
+    queryKey: ['cryptoPrices', cryptos, currency], 
+    queryFn: () => fetchPrices(cryptos, currency),
     enabled: cryptos.length > 0,
   });
 
@@ -113,14 +114,26 @@ const CryptoPriceTracker = () => {
     <div className="min-h-screen bg-[#F2F0EF] flex flex-col items-center justify-center p-6">
       <div className="p-6 rounded-lg w-full max-w-md border ">
       <h1 className="text-2xl font-semibold text-gray-700 text-center mb-4">Crypto Price Tracker</h1>
+      <div className="flex items-center mb-4">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search for cryptocurrencies"
-          className="w-full p-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full p-2 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:text-white dark:placeholder-gray-300"
         />
-          <button onClick={handleSearchSubmit} className="w-full py-2 rounded-md border mt-3 mb-4  hover:bg-gray-100 transition cursor-pointer">Search</button>
+          <select
+            value={currency}
+            onChange={(e) => setCurrency(e.target.value)}
+            className="ml-2 p-2 border border-gray-700 rounded-md"
+          >
+            <option value="cad">CAD</option>
+            <option value="usd">USD</option>
+          </select>
+
+
+      </div>
+          <button onClick={handleSearchSubmit} className="w-full py-2 rounded-md border mt-3 mb-4  hover:bg-gray-100 transition cursor-pointer dark:bg-gray-800 dark:text-white">Search</button>
           {error && (
             <div className="bg-red-100 text-red-700 mt-4 p-4 rounded-md">
               {error.message}
@@ -141,8 +154,8 @@ const CryptoPriceTracker = () => {
             
               Object.entries(prices).map(([crypto, data]) => (
                 <div key={crypto} className="mb-2 p-4 bg-gray-50 rounded-md shadow-sm">
-                  <h3 className="text-lg">{crypto.toUpperCase()}</h3>
-                  <p className="text-green-500">Price: ${data.cad}</p>
+                  <h3 className="text-lg dark:text-white">{crypto.toUpperCase()}</h3>
+                  <p className="text-green-500">Price: ${data[currency]}</p>
                 </div>
               ))
             ) : (
