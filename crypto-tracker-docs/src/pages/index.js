@@ -12,12 +12,22 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">Crypto Tracker Docs</h1>
-        <p className="hero__subtitle">Website deployed at https://crypto-price-tracker-beige.vercel.app/</p>
+        <p className="hero__subtitle">
+  Visit the Crypto Tracker at{' '}
+  <a 
+    href="https://crypto-price-tracker-beige.vercel.app/" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    style={{ color: '#007bff', textDecoration: 'underline' }}
+  >
+    https://crypto-price-tracker-beige.vercel.app/
+  </a>
+</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/project-setup">
-            Go to docs on the Navigation bar to learn more about my project!
+            Read the documentation
           </Link>
         </div>
       </div>
